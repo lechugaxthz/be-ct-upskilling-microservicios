@@ -8,9 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const planets = require('./planets.json');
+const axios = require('axios');
+require('dotenv').config();
 module.exports = {
     list: () => __awaiter(void 0, void 0, void 0, function* () {
-        return planets;
+        return yield axios.get(`${process.env.DATABASE_URL}/planets`);
+    }),
+    detail: (id) => __awaiter(void 0, void 0, void 0, function* () {
+        return yield axios.get(`${process.env.DATABASE_URL}/planets/${id}`);
     })
 };

@@ -1,7 +1,12 @@
-const films = require('./films.json')
+const axios = require('axios')
+
+require('dotenv').config()
 
 module.exports = {
     list: async () => {
-        return films
+        return await axios.get(`${process.env.DATABASE_URL}/films`)
+    },
+    detail: async (id: any) => {
+        return await axios.get(`${process.env.DATABASE_URL}/films/${id}`)
     }
 }
